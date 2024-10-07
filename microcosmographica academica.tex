@@ -1,15 +1,16 @@
 \documentclass[12pt, oneside, b5paper]{memoir}
 
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{booktabs}
 
 \usepackage[T1]{fontenc}
 \usepackage{inputenc}
 \usepackage{fontspec}
+\usepackage{imakeidx}
+\makeindex
 
 \usepackage{titling}
-\usepackage[hang, norule, stable, multiple]{footmisc}
+\usepackage[hang, norule, stable, multiple, bottom]{footmisc}
 \usepackage[default]{sourcesanspro}
 %\usepackage{XCharter}
 \usepackage[british]{babel}
@@ -23,6 +24,16 @@
 \usepackage{xspace}
 \usepackage[xspace]{ellipsis}
 
+\usepackage{geometry}
+\geometry{
+    inner  = 2.5cm,      % Inner margin
+    outer  = 2.5cm,      % Outer margin
+    top    = 2.5cm,      % Top margin
+    bottom = 2.5cm,      % Bottom margin
+    %showframe,         % show how the type block is set on the page
+}
+\usepackage{hyperref}
+
 \newcommand{\subtitle}[1]{%
 	\posttitle{%
 		\par\end{center}
@@ -32,6 +43,30 @@
 \setlength\epigraphwidth{0.85\textwidth}
 \setlength\epigraphrule{0in}
 \nouppercaseheads
+
+\usepackage{etoolbox}
+\makeatletter%%
+\patchcmd{\@makefntext}{%
+\ifFN@hangfoot
+\bgroup}%
+{%
+\ifFN@hangfoot
+\bgroup\def\@makefnmark{\rlap{\normalfont\@thefnmark.}}}{}{}%
+% %%%
+\patchcmd{\@makefntext}{%
+\ifdim\footnotemargin>\z@
+\hb@xt@ \footnotemargin{\hss\@makefnmark}}%
+{%
+\ifdim\footnotemargin>\z@
+\hb@xt@ \footnotemargin{\@makefnmark\hss}}{}{}%
+\makeatother
+
+\setlength{\footnotemargin}{1.25em} % Between marker and text
+\setlength{\skip\footins}{1\baselineskip} % Between main text and note rule
+\setlength{\footnotesep}{\skip\footins} % Between footnotes [= previous]
+
+\renewcommand{\hangfootparskip}{0pt}
+\renewcommand{\hangfootparindent}{1em}
 
 \newcommand{\ma}{\textit{Microcosmographica Academica}\ }
 \newcommand{\mashort}{\textit{Microcosmographica}\ }
@@ -58,29 +93,34 @@ by Metcalfe \& Company Ltd, Cambridge
 
 There was a time toward the end of 1914 when many people imagined that after the war\footnote{Ed n. The first world war.} human nature, in our part of the world, would be different. They even thought it would be better in some ways. I have an idea that I shared in this illusion. But my friends who are still active in this microcosm tell me that academic human nature, at any rate, remains true to the ancient type. Moreover, a short and inglorious career in the home forces and in a government department has convinced me that the academic species is only one member of a genus wider than I had supposed. Frequenters of the Church Congress, too, have admitted that they sometimes turn to the pages of this guide for help. Considering all this, I have persuaded the publishers to reprint it as it stands.
 
-\newpage
 I fancy (though am not sure) that there is just one feature of academic life that has become a little more prominent since the war. If I could have recaptured the mood of the fortnight in which this book was written, I might have added a chapter on propaganda, defined as that branch of the art of lying which consists in very nearly deceiving your friends without quite deceiving your enemies. But the subject is not yet ripe for treatment; the art is still imperfect. We must leave it to be worked out by the part whose mission it is to keep the university safe for aristo-democracy.
 
 \begin{flushright}
-	F M C
+	F M C \\
+	October 1922
 \end{flushright}
 
-October 1922
+%\chapter{Preface, 4th edn}
+%\input{microcosmographica-academica-4th-edn-preface.tex}
 
 \chapter{Preface, 2024}
 
-Francis Macdonald Cornford (27 Feb 1874 -- 3 Jan 1943) was an English classical scholar who specialised on ancient Greek philosophy and science.\footnote{See eg "Mysticism and science in the Pythagorean tradition" \emph{Classical Quarterly} 16 (1922); \emph{The Laws of Motion in Ancient Thought} (1931); \emph{Before and After Socrates} (1932); \emph{Plato's Theory of Knowledge} (1935); \emph{Plato's Cosmology} (1937); \emph{Plato and Parmenides} (1939); \emph{The Republic of Plato} (Oxford, 1941) (a translation with commentary). He also was an author on the Loeb edition of Aristotle's \emph{Physics} (LCL 228, 255).} Coming up to Trinity College in 1893, he was elected a fellow there in 1899, where he spent almost his entire life.
+Francis Macdonald Cornford (27 Feb 1874 -- 3 Jan 1943) was an English classical scholar who specialised on ancient Greek philosophy and science.\footnote{See eg "Mysticism and science in the Pythagorean tradition" \emph{Classical Quarterly} 16 (1922); \emph{The Laws of Motion in Ancient Thought} (1931); \emph{Before and After Socrates} (1932); \emph{Plato's Theory of Knowledge} (1935); \emph{Plato's Cosmology} (1937); \emph{Plato and Parmenides} (1939); \emph{The Republic of Plato} (Oxford, 1941) (a translation with commentary).\index{Plato} He also was an author on the Loeb edition of Aristotle's \emph{Physics} (LCL 228, 255).} Coming up to Trinity College\index{college!Trinity} in 1893, he was elected a fellow there in 1899, where he spent almost his entire life.
 
-In 1903 he brought forward proposals to reform classical pedagogy at Cambridge. \ma was initially published in 1908, anonymously, which brought him into a friendship Frances Darwin (granddaughter of the famous naturalist) whom he married in 1909. He volunteered for service during the first world war; he served as a musketry instructor at Grantham before being transferred to the Ministry of Munitions with the rank of captain. He was made inaugural Laurence Professor of Ancient Philosophy in 1931 and made fellow of the British Academy in 1937. He retired in 1939.
+In 1903 he brought forward proposals to reform classical pedagogy at Cambridge. \ma was initially published in 1908, anonymously, which brought him into a friendship Frances Darwin (granddaughter of the famous naturalist) whom he married in 1909. He volunteered for service during the first world war; he served as a musketry instructor at Grantham before being transferred to the Ministry of Munitions with the rank of captain. He was made inaugural Laurence Professor of Ancient Philosophy in 1931 and fellow of the British Academy in 1937. He retired in 1939.
 
 \mashort itself is now in the public domain under the laws of both the United Kingdom and the United States. So too is the preface to the second edition, released in 1922. However, the preface composed by W~K~C Guthrie for the 1949 fourth edition is not.\footnote{See generally the Duration of Copyright and Rights in Performance Regulations 1995, SI 1995/3297, setting a seventy year from death copyright term. Guthrie died on 17 May 1981; his preface enters the public domain in 2051.} Later editions include the 1993 edition with a foreword by Henry Chadwick titled \emph{Cambridge's Classic Guide to Success in the World} and an 1994 edition by Gordon Johnson titled \emph{University Politics}.
 
-The raw text for this edition was hand entered from the second edition (1922) hosted on Google Books.\footnote{\url{https://books.google.com/books?id=C_rxmQPWbhUC}.} It has not entirely been fully checked for issues. If there are any, please raise an issue on the GitHub repository.\footnote{\url{https://github.com/ifly6/microcosmographica-academica}.}
+The raw text for this edition was hand entered from the second edition (1922) hosted on Google Books.\footnote{\url{https://books.google.com/books?id=C_rxmQPWbhUC}.} I intend it to generally reproduce the same text, including the then-prevalent overuse of capitalisation, that is present in the original. It, however, has not entirely been fully checked for errors; if there are any, please raise an issue on the GitHub repository.\footnote{\url{https://github.com/ifly6/microcosmographica-academica}.}
 
 This document was typeset in \LaTeX\ with 12 point Source Sans Pro on B5 paper. This biographical information is sourced mostly from the \emph{Oxford Dictionary of National Biography}.
 
+\begin{flushright}
+	ifly6 \\
+	October 2024
+\end{flushright}
+
 \chapter{Dedication}
-\vskip 1in
 \begin{center}
 	To \\
 	
@@ -115,6 +155,7 @@ and your spirit hankers after academic politics;
 
 \chapter{Warning}
 \epigraph{
+\index{Plato}
 Any one of us might say... he sees as a fact that academic persons, when they carry on study, not only in youth as a part of education, but as the pursuit of their maturer years, most of them become decidedly queer, not to say rotten; and that those who may be considered the best of them are made useless to the world by the very study which you extol.
 
 \vskip 0.25em Well, do you think that whose who say so are wrong?
@@ -123,11 +164,12 @@ Any one of us might say... he sees as a fact that academic persons, when they ca
 
 \vskip 0.25em Hear my answer: I am of the opinion that they are quite right.}{-- Plato, Republic, 6}
 
-My heart is full of pity for you, O young academic politician. If you will be a politician you have a painful path to follow, even though it be a short one, before you nestle down into a modest incompetence. While you are young you will be oppressed, and angry ,and increasingly disagreeable. When you reach middle age, at five-and-thirty, you will become complacent and, in your turn, an oppressor; those whom you oppress will find you still disagreeable; and so will all the people whose toes you trod upon in youth. It would seem to you then that you grow wiser every day, as you learn more and more of the reasons why things should not be done, and understand more fully the peculiarities of powerful persons, which make it quixotic even to attempt them without first going through an amount of squaring and lobbying sufficient to sicken any buy the most hardened soul. If you persist to the threshold of old age -- your fiftieth year, let us say -- you will be a powerful person yourself, with an accretion of peculiarities which other people will have to study in order to square you. The toes you will have trodden on by this time will be as the sands on the sea-shore; and from far below you will mount the roar of a ruthless multitude of young men in a hurry. You may perhaps grow to be aware what they are in a hurry to do. \textit{They are in a hurry to get you out of the way.}
+My heart is full of pity for you, O young academic politician. If you will be a politician you have a painful path to follow, even though it be a short one, before you nestle down into a modest incompetence. While you are young you will be oppressed, and angry, and increasingly disagreeable. When you reach middle age, at five-and-thirty, you will become complacent and, in your turn, an oppressor; those whom you oppress will find you still disagreeable; and so will all the people whose toes you trod upon in youth. It would seem to you then that you grow wiser every day, as you learn more and more of the reasons why things should not be done, and understand more fully the peculiarities of powerful persons, which make it quixotic even to attempt them without first going through an amount of squaring and lobbying sufficient to sicken any buy the most hardened soul. If you persist to the threshold of old age -- your fiftieth year, let us say -- you will be a powerful person yourself, with an accretion of peculiarities which other people will have to study in order to square you.\index{age}\index{squaring} The toes you will have trodden on by this time will be as the sands on the sea-shore; and from far below you will mount the roar of a ruthless multitude of young men in a hurry.\index{Young Man in a Hurry} You may perhaps grow to be aware what they are in a hurry to do. \textit{They are in a hurry to get you out of the way.}
+% confirmed young men in a hurry above is not capitalised
 
 O young academic politician, my heart is full of pity for you; but when you are old, if you will stand in the way, there will be no more pity for you than you deserve; and that will be none at all.
 
-I shall take it that you are in the first flush of ambition, and just beginning to make yourself disagreeable. You think (do you not?) that you have only to state a reasonable case, and people must listen to reason and act upon it at once. It is just this conviction that makes you so unpleasant. There is little hope of dissuading you; but has it occurred to you that nothing is ever done until everyone is convinced that it ought to be done, and has been convinced for so long that it is now time to do something else? And are you not aware that conviction has never yet been produced by an appeal to reason, which only makes people uncomfortable? If you want to move them, you must address your arguments to prejudice and the political motive, which I will presently describe. I should hesitate to write down so elementary a principle, if I were not sure that you need to be told it. And you will not believe me, because you think your cases are so much more reasonable than mine can have been, and you are ashamed to study men's weaknesses and prejudices. You would rather batter away at the Shield of Faith than spy out the joints in the harness.
+I shall take it that you are in the first flush of ambition, and just beginning to make yourself disagreeable. You think (do you not?) that you have only to state a reasonable case,\index{reason} and people must listen to reason and act upon it at once. It is just this conviction that makes you so unpleasant. There is little hope of dissuading you; but has it occurred to you that nothing is ever done until everyone is convinced that it ought to be done, and has been convinced for so long that it is now time to do something else? And are you not aware that conviction has never yet been produced by an appeal to reason, which only makes people uncomfortable? If you want to move them, you must address your arguments to prejudice and the political motive, which I will presently describe. I should hesitate to write down so elementary a principle, if I were not sure that you need to be told it. And you will not believe me, because you think your cases are so much more reasonable than mine can have been, and you are ashamed to study men's weaknesses and prejudices. You would rather batter away at the Shield of Faith than spy out the joints in the harness.
 
 I like you the better for your illusions; but it cannot be denied that they prevent you from being effective, and if you do not become effective before you cases to want anything to be done -- why, what will be the good of you? So I present you with this academic microcosmography -- the merest sketch of the little world that lies before you. A satirist or an embittered man might have used darker colours; and I own that I have only drawn those aspects which it is most useful that you, as a politician, should know. There is another world within this microcosm -- a silent, reasonable world, which you are not bent on leaving. Some day you may go back to it; and you will enjoy its calm all the more for your excursion into the world of unreason.
 
@@ -137,17 +179,22 @@ Now listen, and I will tell you what this outer world is like.
 
 First perhaps, I had better describe the parties in academic politics; it is not easy to distinguish them precisely. There are five; and they are called Conservative Liberals, Liberal Conservatives, Non-placets, Adullamites, and Young Men in a Hurry.
 
+\index{Conservative Liberal}
 A \textit{Conservative Liberal} is a broad-minded man, who thinks that something ought to be done, only not anything that anyone now desires, but something which was not done in 1881--82.
 
-A \textit{Liberal Conservative} is a broad-minded man, who thinks that something ought to be done, only not anything that anyone now desires; and that most things which were done in 1881--82 ought t obe undone.
+\index{Liberal Conservative}
+A \textit{Liberal Conservative} is a broad-minded man, who thinks that something ought to be done, only not anything that anyone now desires; and that most things which were done in 1881--82 ought to be undone.
 
 The men of both these parties are alike in being open to convictions; but so many convictions have already got inside, that it is very difficult to find the openings. They dwell in the Valley of Indecision.
 
+\index{Non-placet}
 The \textit{Non-placet}\footnote{Ed n. \textit{Placet}, pronounced plah-set or plah-ket, is a Latin third person active indicative, meaning "it pleases". A society was also formed at Oxford in the early 1880s, the \textit{Non-Placet Society}, consisting of conservative dons seeking to oppose "progress falsely so called" (especially diversion of funds to scientific research or "distractions" such as theatre and women students) and preserve classical and clerical studies. By the turn of the century its political power had waned as an opposing faction called "The Club" gained support. Janet Howarth "The self-governing university, 1882--1914" in \textit{History of the University of Oxford} vol 7 pt 2 (2000) pp 625--30.} differs in not being open to conviction; he is a man of principle. A principle is a rule of of inaction, which states a valid general reason for not doing in any particular case what, to unprincipled instinct, would appear to be right. The Non-placet believes that it is always well to be on the Safe Side, which can be easily located as the northern side of the interior of the Senate House. He will be a person whom you have never seen before, and will never see again anywhere but in his favourite station on the left of the place of judgement.\footnote{Ed n. I have not confirmed this, but this likely reflects where people stand for division in voting.}
 
+\index{Adullamite}
 The \textit{Adullamites} are dangerous, because they know what they want; and that is, all the money there is going. They inhabit a series of caves near Downing Street.\footnote{Ed n. Downing Street is the home and office of the UK prime minister.} They say to one another, "If you will scratch my bank, I will scratch yours; if you won't, I will scratch your face". It will be seen that these cave-dwellers are not refined, like classical men. That is why they succeed in getting all the money there is going.
 
-The \textit{Young Man in a Hurry} is a narrow-minded and ridiculous youthful prig, who is inexperienced enough to imagine that something might be done before very long, and even to suggest definite things. His most dangerous defect being want of experience, everything should be done to prevent him from taking any part in affairs. He may be known by his propensity to organise societies for the purpose of making silk purses out of sows' ears.\footnote{Ed n. This is an idiom, where "you cannot make a silk purpose out of a sow's ear" is taken to mean that it is not possible to make something of little value into one of high value (or something unattractive into something attractive).} This tendency is not so dangerous as it might seem; for it may be observed that the sows, after taking their washing with a grunt or two, trundle back unharmed to the wallow; and the purse market is quoted as firm. The Young Man in a Hurry is afflicted with a conscience, which is apt to break out, like the measles, in patches. To listen to him, you would think that he united the virtues of a Brutus to the passion for lost causes of a Cato; he has not learnt that the most of his causes are lost by letting the Cato out of the bag, instead of tying him up firmly and sitting on him, as experienced people do.
+\index{Young Man in a Hurry}
+The \textit{Young Man in a Hurry} is a narrow-minded and ridiculous youthful prig, who is inexperienced enough to imagine that something might be done before very long, and even to suggest definite things. His most dangerous defect being want of experience, everything should be done to prevent him from taking any part in affairs. He may be known by his propensity to organise societies for the purpose of making silk purses out of sows' ears.\footnote{Ed n. This is an idiom, where "you cannot make a silk purpose out of a sow's ear" is taken to mean that it is not possible to make something of little value into one of high value (or something unattractive into something attractive).}\index{Sow's ears} This tendency is not so dangerous as it might seem; for it may be observed that the sows, after taking their washing with a grunt or two, trundle back unharmed to the wallow; and the purse market is quoted as firm. The Young Man in a Hurry is afflicted with a conscience, which is apt to break out, like the measles, in patches. To listen to him, you would think that he united the virtues of a Brutus to the passion for lost causes of a Cato; he has not learnt that the most of his causes are lost by letting the Cato out of the bag, instead of tying him up firmly and sitting on him, as experienced people do.
 
 O young academic politician, know thyself!
 
@@ -155,48 +202,65 @@ O young academic politician, know thyself!
 
 A caucus is like a mousetrap; when you are outside, you want to get in; and, when you are inside, the mere sight of the other mice makes you want to get out. The trap is baited with muffins and cigars -- except in the case of the Non-placet Caucus, an ascetic body, which, as will presently be seen, satisfies only spiritual needs.
 
+\index{Adullamite}
 The \textit{Adullamites} hold a Caucus from time to time to conspire agains the College System. They wear blue spectacles and false beards, and say the most awful things to one another. There are two ways of dispersing these anarchs. One is to suggest that working hours might be lengthened. The other is to convert the provider of muffins and cigars to Conservative Liberalism.\footnote{Ed n. Again, a conservative liberal is someone who wants to do something that was not done in 1881--82.} To mention belling the cat\footnote{Ed n. The story about belling the cat is that a committee of mice agree to put a bell on the house's cat to warn of his approach; they are then unable to find any volunteers for this task.} would be simply indecent.
 
-No one can tell the difference between a \textit{Liberal Conservative} Caucus and a \textit{Conservative Liberal} one. There is nothing in the world more innocent than either. The most daredevil action they ever take is to move for the appointment of a Syndicate "to consider what means, if any, can be discovered to preventing the Public Washing of Linen,\footnote{Ed n. When you wash linen in public, you are showing the stains on that linen in public; if you want to be known as clean, therefore, you should never wash your linen. See infra p \pageref{linen}.} and to report, if they can see straight, to the Non-placets". The result is the formation of an invertebrate body ,which sits for two years, with growing discomfort, on the clothes basket containing the linen. When the Syndicate is so stupefied that it is quite forgotten what it is sitting on, it issues three minority reports, of enormous bulk, on some different subject. The reports are referred by the Council to the Non-placets, and by the Non-placets to the wastepaper basket. This is called "reforming the University from within".
+\index{Liberal Conservative}\index{Conservative Liberal}\index{Public Washing of Linen}\index{Syndicate}\index{Non-placet}\index{reform}
+No one can tell the difference between a \textit{Liberal Conservative} Caucus and a \textit{Conservative Liberal} one. There is nothing in the world more innocent than either. The most daredevil action they ever take is to move for the appointment of a Syndicate "to consider what means, if any, can be discovered to preventing the Public Washing of Linen,\footnote{Ed n. When you wash linen in public, you are showing the stains on that linen in public; if you want to be known as clean, therefore, you should never wash your linen. See infra p \pageref{linen}.} and to report, if they can see straight, to the Non-placets". The result is the formation of an invertebrate body, which sits for two years, with growing discomfort, on the clothes basket containing the linen. When the Syndicate is so stupefied that it is quite forgotten what it is sitting on, it issues three minority reports, of enormous bulk, on some different subject. The reports are referred by the Council to the Non-placets, and by the Non-placets to the wastepaper basket. This is called "reforming the University from within".
 
+\index{elections}
 At election times each of these two Caucuses meets to select for nomination those members of its own party who are most likely to be mistaken by the Non-placets for members of the other party. The best results are achieved when the nominees get mixed up in such a way that the acutest of Non-placets cannot divine which ticket represents which party. The system secures that the balance of power shall be most happily maintained, and that all Young Men in a Hurry shall be excluded.
 
+\index{Young Man in a Hurry}
 The \textit{Young Men in a Hurry} have no regular caucus. They meet, by twos or threes, in desolate places, and gnash their teeth.
 
+\index{Non-placet!Church}
 The \textit{Non-placet} Caucus exists for the purpose of distributing Church patronage among those of its members who have adhered immovably the principles of the party.
 
+\index{quorum}
 All Caucuses have the following rule. At Caucus meetings which are attended by only one member (owing to that members' having omitted to summon the others), the said member shall be deemed to constitute a quorum, and may vote the meeting full powers to go on the square without further ceremony.
 
 \chapter{On acquiring influence}
 
+\index{influence}
 Now that you know about the parties and the Caucuses, your first business will be to acquire influence. Political influence may be acquired in exactly the same way as the gout; indeed, the two ends ought to be pursued concurrently. The method is to sit tight and rink port wine. You will thus gain the reputation of being a good fellow; and not a few wild oats will be condoned in one who is sound at heart, if not at the lower extremities.
 
+\index{Good Businessman}
 Or, perhaps, you may prefer to quality as a \textit{Good Businessman}.
 
-His is one whose mind has not been warped and narrowed by merely intellectual interests, and who, at the same time, has not those odious pushing qualities which are unhappily required for making a figure in business anywhere else. He has had his finger on the pulse of the Great World -- a distant and rather terrifying region, which it is very necessary to keep in touch with, though it must not be allowed on any account to touch you. Difficult as it seems, this relation is successfully maintained by sending young men to the Bar with Fellowships of two hundred pounds a year and no duties. Life at the Bar, in these conditions, is very pleasant; and only good businessmen are likely to return. All businessmen are good; and it is understood that they let\footnote{Ed n. "Let" is here used to refer to renting out.} who will be clever, provided he be not clever at their expense.
+His is one whose mind has not been warped and narrowed by merely intellectual interests, and who, at the same time, has not those odious pushing qualities which are unhappily required for making a figure in business anywhere else. He has had his finger on the pulse of the Great World -- a distant and rather terrifying region, which it is very necessary to keep in touch with, though it must not be allowed on any account to touch you. Difficult as it seems, this relation is successfully maintained by sending young men to the Bar with Fellowships of two hundred pounds a year and no duties. Life at the Bar,\index{bar} in these conditions, is very pleasant; and only good businessmen are likely to return. All businessmen are good; and it is understood that they let\footnote{Ed n. "Let" is here used to refer to renting out.} who will be clever, provided he be not clever at their expense.
 
 \chapter{Principles of government, of discipline (including religion), and of sound learning}
 
+\index{Senate}\index{Board}\index{Non-placet!Church}
 These principles are all deducible from the fundamental maxim, that the first necessity of a body of men engaged in the pursuit of learning is freedom from the burden of practical cares. It is impossible to enjoy the contemplation of truth if one is vexed and distracted by the sense of responsibility. Hence the wisdom of our ancestors devised a form of academic polity in which this sense is, so far as human imperfection will allow, reduced to the lowest degree. By vesting the sovereign authority in the Non-placets (technically known as the "Senate" on account of the high average of their age), our forefathers secured that the final decision should rest with a body which, being scattered in county parsonages, has no corporate feeling whatever, and, being necessarily ignorant of the decisive considerations in almost all the business submitted to it, cannot have the sense of any responsibility, except it be the highest, when the Church is in danger. In the smaller bodies, called "Boards", we have succeeded only in minimising the dangerous feeling, by the means of never allowing anyone to act without first consulting at least twenty other people who are accustomed to regard him with well-founded suspicion. Other democracies have reached this pitch of excellence; but the academic democracy is superior in having no organised parties. We thus avoid all the responsibilities of party leadership (there are leaders but no one follows them), and the degradations of party compromise. It is clear, moreover, that twenty independent persons, each of whom has a different reason for not doing a certain thing, and no one of whom will compromise with any other, constitute a most effective check upon the rashness of individuals.
 
+\index{Council}
 I forgot to mention that there is also a body called the "Council", which consists of men who are firmly convinced that they are business-like. There is no doubt that some of them are Good Businessmen.
 
-The Principle of Discipline (including Religion) is that "\textit{there must be some rules}". If you inquire the reason, you will find that the object of rules is to relieve the younger men of the burdensome feeling of moral or religious obligation. If their energies are to be left unimpaired for the pursuit of athletics, it is clearly necessary to protect them against the weakness of their own characters. They must never be troubled with having to think whether this or that ought to be done or not; it should be settled by rules. The most valuable rules are those which ordain attendance at lectures and at religious worship. If these were not enforced, young men would begin too early to take learning and religion seriously; and that is well known to be bad form. Plainly, the more rules you can invent, the less need there will be to waste time over fruitless puzzling about right and wrong. The best sort of rules are those which prohibit important, but perfectly innocent, actions, such as smoking in College Courts, or walking to Madingley on Sunday without academical dress. The merit of such regulations is that, having nothing to do with right or wrong, they help to obscure these troublesome considerations in other cases, and to relieve the mind of all sense of obligation toward society.
+\index{discipline}
+The Principle of Discipline (including Religion) is that "\textit{there must be some rules}". If you inquire the reason, you will find that the object of rules is to relieve the younger men of the burdensome feeling of moral or religious obligation. If their energies are to be left unimpaired for the pursuit of athletics, it is clearly necessary to protect them against the weakness of their own characters. They must never be troubled with having to think whether this or that ought to be done or not; it should be settled by rules. The most valuable rules are those which ordain attendance at lectures and at religious worship. If these were not enforced, young men would begin too early to take learning and religion seriously; and that is well known to be bad form. Plainly, the more rules you can invent, the less need there will be to waste time over fruitless puzzling about right and wrong. The best sort of rules are those which prohibit important, but perfectly innocent, actions, such as smoking in College Courts,\index{smoking} or walking to Madingley\index{Madingley} on Sunday without academical dress. The merit of such regulations is that, having nothing to do with right or wrong, they help to obscure these troublesome considerations in other cases, and to relieve the mind of all sense of obligation toward society.
 
+\index{Roman!sword}\index{Roman!law}\index{British Empire}
 The Roman sword would never have conquered the world if the grand fabric of Roman Law had not been elaborated to save the man behind the sword from having to think for himself. In the same way the British Empire is the outcome of College and School discipline and of the Church Catechism.
 
+\index{Principle of Sound Learning}
 The Principle of Sound Learning is that the noise of vulgar fame should never trouble the cloistered calm of academic existence. Hence, learning is called sound when no one has ever heard of it; and "sound scholar" is a term of praise applied to one another by learned men who have no reputation outside the University, and a rather queer one inside it. If you should write a book (you had better not), be sure that it is unreadable; otherwise you will be called "brilliant" and forfeit all respect.
 
+\index{university press}
 University printing presses exist, and are subsidised by Government, for the purpose of producing books which no one can read; and they are true to their high calling. Books are the sources of material for lectures. They should be kept from the young; for to read books and remember what you read, well enough to reproduce it, is called "cramming", and this is destructive of all true education. The best way to protect the young from books is, first, to make sure that they shall be so dry as to offer no temptation; and, second, to store them in such a way that no one can find them without several years' training. A lecturer is a sound scholar, who is chosen to teach on the ground that he was once able to learn. Eloquence is not permissible in a lecture; it is a privilege reserved by statute for the Public Orator.
 
 \chapter{The political motive}
 
+\index{politics}\index{cynicism}
 You will begin, I suppose, by thinking that people who disagree with you and oppress you must be dishonest. Cynicism is the besetting and venial fault of declining youth, and disillusionment its last illusion. It is quite a mistake to suppose that real dishonesty is at all common. The number of rogues is about equal to the number of men who always act honestly; and it is very small. The great majority would sooner behave honestly than not. The reason why they do not give way to this natural preference of humanity is that they are afraid that others will not; and the others do not because they are afraid that \textit{they} will not. Thus it comes about that, while behaviour which looks dishonest is fairly common, sincere dishonesty is about as rare as the courage to evoke good faith in your neighbours by showing that you trust them.
 
+\index{fear}
 No; the Political Motive in the academic breast is honest enough. It is \textit{Fear} -- genuine, perpetual, heart-felt timorousness. We shall see presently that all the Political arguments are addressed to this passion. Have you ever noticed how people say "I'm afraid I don't \dots" when they mean "I think I don't \dots"?
 
 The proper objects of Fear, hereafter to be called \emph{Bugbears}, are (in order of importance):
 
+\index{Bugbears}\index{Giving yourself away}\index{women}\index{Public Washing of Linen}\index{socialism}\index{atheism}
 \begin{itemize}
 	\item Giving yourself away;
 	\item Females;
@@ -215,23 +279,31 @@ The Practice of Politics may be divided under three heads: \emph{Argument}; the 
 
 There is only one argument for doing something; the rest are arguments for doing nothing.
 
+\index{inaction|(}
 The argument for doing something is that it is the right thing to do. But the, of course, comes the difficulty of making sure that it is right. Females act by mere instinctive intuition; but men have the gift of reflection. As Hamlet, the typical man of action, says:
 
+\index{Hamlet}
 \begin{quote}
 What is a man, \\ if his chief good and market of his time \\ be but to sleep and feed? a beast no more \\
 sure, he that made us with such large discourse \\ looking before and after, gave us not \\ that capability and god-like reason \\ to fust in us unused.
 \end{quote}
 
+\index{women}
 Now the academic person is to Hamlet as Hamlet is to a female; or, to use his own quaint phrase, a "beast"; his discourse is many times larger, and he looks before and after many times as far. Even a little knowledge of ethical theory will suffice to convince you that all important questions are so complicated, and the results of any course of action are so difficult to foresee, that certainty, or even probability, is seldom, if ever, attainable. It follows at once that the only justifiable attitude of mind is suspense of judgement; and this attitude, besides being peculiarly congenial to the academic temperament, has the advantage of being comparatively easy to attain. There remains the duty of persuading others to be equally judicious, and to refrain from plunging into reckless courses which might lead them Heaven knows whither. At this point the arguments for doing nothing come in; for it is a mere theorist's paradox that doing nothing has just as many consequences as doing something. It is obvious that inaction can have no consequences at all.
+\index{inaction|)}
 
 Since the stone axe fell into disuse at the close of the Neolithic age, two other arguments of universal application have been added to the rhetorical armoury by the ingenuity of mankind. they are closely akin; and, like the stone axe, they are addressed to the Political Motive. They are called the \emph{Wedge} and the \emph{Dangerous Precedent}. Though they are familiar, the principles, or rule of inaction, involved in them are seldom stated in full. They are as follows.
 
+\index{Principle of the Wedge}
 The \emph{Principle of the Wedge} is that you should not act justly now for fear of raising expectations that you may act still more justly in the future -- expectations which you are afraid you will not have the courage to satisfy. A little reflection will make it evident that the Wedge argument implies the admission that the persons who use it cannot prove that the action is not just. If they could, that would be the sole and sufficient reason for not doing it, and this argument would be superfluous.
 
-The \emph{Principle of the Dangerous Precedent} is that you should not now do an admittedly right action for fear you, or your equally timid successors, should not have the courage to do right in some future case, which, \emph{ex hypothesi}, is essentially different, but superficially resembles the present one. Every public action which is not customary, either is wrong, or, if it is right, is a dangerous precedent. It follows that nothing should be done for the first time.\footnote{Ed n. See \emph{Yes, Minister} "Doing the honors" (season 2, episode 2, 1981).}
+\index{Principle of the Dangerous Precedent}
+The \emph{Principle of the Dangerous Precedent} is that you should not now do an admittedly right action for fear you, or your equally timid successors, should not have the courage to do right in some future case, which, \emph{ex hypothesi}, is essentially different, but superficially resembles the present one. Every public action which is not customary, either is wrong, or, if it is right, is a dangerous precedent. It follows that nothing should be done for the first time.\footnote{Ed n. See \emph{Yes, Minister} "Doing the honors" (season 2, episode 2, 1981).\index{Yes, Minister@\textit{Yes, Minister}}}
 
-It will be seen that both the Political Arguments are addressed to the Bugbear of \emph{Giving yourself away}. Other special arguments can be framed in view of the other Bugbears. It will often be sufficient to argue that a change is a change -- an irrefutable truth. If this consideration is not decisive, it may be reinforced by the Fair Trial Argument -- "\emph{Give the present system a Fair Trial}". This is especially useful in withstanding changes in the schedule of an examination. In this connection the exact meaning of the phrase is, "I don't intend to alter my lectures if I can help it; and, if you pass this proposal, you may have to alter yours". This paraphrase explains what might otherwise be obscure; namely, the reason why a Fair Trial ought to be given only to systems which already exist, not to porposed alternatives.
+\index{Giving yourself away}\index{Fair Trial Argument}
+It will be seen that both the Political Arguments are addressed to the Bugbear of \emph{Giving yourself away}. Other special arguments can be framed in view of the other Bugbears. It will often be sufficient to argue that a change is a change -- an irrefutable truth. If this consideration is not decisive, it may be reinforced by the Fair Trial Argument -- "\emph{Give the present system a Fair Trial}". This is especially useful in withstanding changes in the schedule of an examination. In this connection the exact meaning of the phrase is, "I don't intend to alter my lectures if I can help it; and, if you pass this proposal, you may have to alter yours". This paraphrase explains what might otherwise be obscure; namely, the reason why a Fair Trial ought to be given only to systems which already exist, not to proposed alternatives.
 
+\index{Principle of Unripe Time}
 Another argument is that "\emph{the Time is not Ripe}". The Principle of Unripe Time is that people should not do at the present moment what they think right at that moment, because the moment at which they think it right has not yet arrived. But the unripeness of the time will, in most cases, be found to lie in the Bugbear, "What Dr --------- will say". Time, by the way, is like the medlar; it has a trick of going rotten before it is ripe!
 
 \chapter{The conduct of business}
@@ -240,56 +312,72 @@ This naturally divides into two branches: (1) \emph{Conservative Liberal Obstruc
 
 The former is by much the more effective; and it should always be preferred to mere unreasonable opposition, because it will bring you the reputation of being more advanced than any so-called reformer.
 
+\index{Conservative Liberal!obstruction}
 The following are the main types of argument suitable for the \emph{Conservative Liberal}.
 
 "\emph{The present measure would block the way for a far more sweeping reform}." The reform in question ought always be one which was favoured by a few extremists in 1881, and which is by this time quite impracticable and not even desired by anyone. This argument might safely be combined with the Wedge argument: "If we grant this, it will be impossible to stop short". It is a singular fact that all measures are always opposed on both these grounds. The apparent discrepancy\footnote{Ed n. That failing to stop short means doing things which means that the "far more sweeping reform" can be done.} is happily reconciled when it comes to voting.
 
-\label{linen}
+\index{Public Washing of Linen}\label{linen}
 Another argument is that "\emph{the machinery for effecting the proposed objects already exists}". This should be urged in cases where the existing machinery has never worked, and is now so rusty that there is no chance of its being set in motion. When this is ascertained, it is safe to add that "\emph{it is far better that all reform should come from within}"; and to throw in a reference to the \emph{Principle of Washing Linen}. This principle is that it is better never to wash your linen if you cannot do it without anyone knowing that you are so cleanly.
 
+\index{alternative proposal}
 The third accepted means of obstruction is the \emph{Alternative Proposal}. This is a form of Red Herring. As soon as three or more alternatives are in the field, there is pretty sure to be a majority against any one of them, and nothing will be done.
 
+\index{bearbaiting}
 The method of \emph{Prevarication} is based upon a very characteristic trait of the academic mind, which comes out in the common remark, "I was in favour of the proposal until I heard Mr ---------'s argument in support of it". The principle is, that a few bad reasons for doing something neutralise all the good reasons for doing it. Since this is devoutly believed, it is often the best policy to argue weakly against the side you favour. If your personal enemies are present in force, throw in a little bearbaiting, and you are certain of success. You can vote in the minority, and no one will be the wiser.
 
+\index{Liberal Conservative!obstruction}
 \emph{Liberal Conservative Obstruction} is less argumentative and leans to invective. It is particularly fond of the Last Ditch and the Wild Cat.
 
+\index{Last Ditch}
 The \emph{Last Ditch} is the Safe Side, considered as a place which you may safely threaten to die in. You are not likely to die there prematurely; for, to judge by the look of the inhabitants, the climate of the Safe Side conduces to longevity. If you did die, nobody would much mind; but the threat may frighten them for the moment.
 
+\index{Wild Cat}
 "\emph{Wild Cat}" is an epithet applicable to persons who bring forward a scheme unanimously agreed upon by experts after two years' exhaustive consideration of thirty-five or more alternative proposals. In its wider use it applies to all ideas which were not familiar in 1881.
 
+\index{Non-placet!placet}
 There is an oracle of Merlin which says, "When the wild cat is belled, the mice will vote \emph{Placet}".
 
+\index{Young Man in a Hurry}
 The argument, "\emph{that you remember exactly the same proposal being rejected in 1867}", is a very strong one in itself; but its defect is that it appeals only to those who also remember the year 1867 with affectionate interest, and, moreover, are unaware that any change has occurred since then. There are such people, but they are lamentably few; and some even of them are no longer Young Men in a Hurry, and can be trusted to be on the Safe Side in any case. So this argument seldom carries its proper weight.
 
+\index{Wasting Time!Boring}
 When other methods of obstruction fail, you should have recourse to \emph{Wasting Time}; for, although it is recognised in academic circles that time in general is of no value, considerable importance is attached to teatime, and, by deferring this, you may exasperate any body of men to the point of voting against anything. The simplest method is \emph{Boring}. Talk slowly and indistinctly, at a little distance from the point. No academic person is ever voted into the chair until he has reached an age at which he has forgotten the meaning of the word "irrelevant"; and you will be allowed to go on, until everyone in the room will vote with you sooner than hear your voice another minute. Then you should move for adjournment. Motions for adjournment, made less than fifteen minutes before tea-time or at any subsequent moment, are always carried. While you are engaged in Boring it does not much matter what you talk about; but, if possible, you should discourse upon the proper way of doing something which you are notorious for doing badly yourself. Thus, if you are an inefficient lecturer, you should lay down the law on how to lecture; if you are a good business man, you should discuss the principles of finance; and so on.
 
+\index{Wasting Time!procedure}
 If you have applied yourself in youth to the cultivation of the \emph{Private Business habit of mind} at the Union\footnote{Ed n. Eg Oxford and Cambridge Union.} and other debating societies, questions of procedure will furnish you with many resources for wasting time. You will eagerly debate whether it is allowable or not to amend an amendment; or whether it is consonant with the eternal laws for a body of men, who have all changed their minds, to rescind a resolution which they have just carried. You will rise, like a fish, to points of order, and call your intimate friends "honourable" to their faces. You will make six words do duty for one; address a harmless individual as if he were a roomful of abnormally stupid reporters; and fill up the time till you can think of something to say by talking, instead of by holding your tongue. 
 
-An appeal should be made, whenever it is possible, to \emph{College Feeling}. This, like other species of patriotism, consists in a sincere belief that the institution to which you belong is better than an institution to which other people belong. The corresponding belief ought to be encouraged in others by frequent confession of this article of faith in their presence. In this way a healthy spirit of rivalry will be promoted. It is this feeling which makes the College System so valuable; and differentiates, more than anything else, a College from a boarding-house; for in a boarding-house hatred is concentrated, not upon rival establishments, but upon the other members of the same establishment.
+\index{Wasting Time!college feeling}\index{college|(}
+An appeal should be made, whenever it is possible, to \emph{College Feeling}. This, like other species of patriotism, consists in a sincere belief that the institution to which you belong is better than an institution to which other people belong. The corresponding belief ought to be encouraged in others by frequent confession of this article of faith in their presence. In this way a healthy spirit of rivalry will be promoted. It is this feeling which makes the College System so valuable; and differentiates, more than anything else, a College from a boarding-house; for in a boarding-house hatred is concentrated, not upon rival establishments, but upon the other members of the same establishment.\index{college|)}
 
+\index{bearbaiting}\index{bullfighting}
 Should you have a taste for winter sports, you may amuse yourself with a little \emph{Bear-baiting} or \emph{Bull-fighting}. Bulls are easier to draw than bears; you need only get to know the right red rag for a given bull, and for many of them almost any rag will serve the turn. Bears are more sulky, and have to be prodded; on the other hand they don't go blind, like bulls; and when they have bitten your head off, they will often come round and be quite nice. Irishmen can be bulls, but not bears; Scotsmen can be bears, but not bulls; an Englishman may be either.
 
+\index{Wasting Time!comma hunting}
 Another sport which wastes unlimited time is \emph{Comma-hunting}. Once start a comma and the whole pack will be off, full cry, especially if they had a literary training. (Adullamites affect to despise commas, and even their respect for syntax is often not above suspicion.) But comma-hunting is so exciting as to be a little dangerous. When attention is entirely concentrated on punctuation, there is some fear that the conduct of business may suffer, and a proposal get through without being properly obstructed on its demerits. It is therefore wise, when a kill has been made, to move at once for adjournment. 
 
 \chapter{Squaring}
 
+\index{jobs}
 The most important branch of political activity is, of course, closely connected with \emph{Jobs}. These fall into two classes, My Jobs and Your Jobs. My Jobs are public-spirited proposals, which happen (much to my regret) to involve the advancement of a personal friend, of (still more to my regret) of myself. Your Jos are insidious intrigues for the advancement of yourself and your friends, speciously disguised as public-spirited proposals. The term Job is more commonly applied to the second class. When you and I have, each of us, a Job on hand, we shall proceed to go on the Square.
 
+\index{King's Parade}\index{college!Pembroke}\index{college!Gaius}
 Squaring can be carried on at lunch; but it is better that we should meet casually. The proper course to pursue is to take a walk, between 2 and 4 pm, up and down the King's Parade, and more particularly that part of it which lies between the Colleges of Pembroke and Gaius. When we have thus succeeded in meeting accidentally, it is etiquette to talk about indifferent matters for ten minutes and then part. After walking five paces in the opposite direction you should call me back, and begin with the words, "Oh, by the way, if you should happen\dots". The nature of Your Job must then be vaguely indicated, without mentioning names; and it should be treated by both parties as a matter of very small importance. You should hint that I am a very influential person, and that the whole thing is a secret between us. Then we shall part as before, and I shall call you back and introduce the subject of My Job, in the same formula. By observing this procedure we shall emphasise the fact that there is \emph{no connection whatever} between my supporting your Job and your supporting mine. This absence of connection is the essential feature of Squaring.
 
-Remember this: \emph{the men who et things done are the men who walk up and down the King's Parade from 2 to 4, every day of their lives}. You can either join them, and become a powerful person; or you can join the great throng of those who spend all their time in preventing them from getting things done, and in the larger task of preventing one another from doing anything whatever. This is the Choice of Hercules, when Hercules takes to politics.
+Remember this: \emph{the men who et things done are the men who walk up and down the King's Parade from 2 to 4, every day of their lives}. You can either join them, and become a powerful person; or you can join the great throng of those who spend all their time in preventing them from getting things done, and in the larger task of preventing one another from doing anything whatever. This is the Choice of Hercules,\index{Hercules} when Hercules takes to politics.
 
 \chapter{Farewell}
 
-O young academic politician, my heart is full of pity for you, because you will not believe a word that I have said. You will mistake sincerity for cynicism, and half the truth for exaggeration. You will think the other half of the truth, which I have no told, is the whole. You will take your own way, make yourself dreadfully disagreeable, tread on innumerable toes, butt your head against stone walls, neglect prejudice and fear, appeal to reason instead of appealing to bugbears. Your bread shall be bitterness, and your drink tears.
+O young academic politician, my heart is full of pity for you, because you will not believe a word that I have said. You will mistake sincerity for cynicism,\index{cynicism} and half the truth for exaggeration. You will think the other half of the truth, which I have no told, is the whole. You will take your own way, make yourself dreadfully disagreeable, tread on innumerable toes, butt your head against stone walls, neglect prejudice and fear, appeal to reason instead of appealing to bugbears. Your bread shall be bitterness, and your drink tears.
 
-I have done what I could to warn you. When you become middle-aged -- on your five-and-thirtieth birthday -- glance through this book and judge between me and your present self.
+I have done what I could to warn you. When you become middle-aged -- on your five-and-thirtieth birthday -- glance through this book and judge between me and your present self.\index{age}
 
 If you decide that I was wrong, put the book in the fire, betake yourself to the King's Parade, and good-bye. I have done with you.
 
 But if you find that I was right, remember that other world, within the microcosm, the silent, reasonable world, where the only action is thought, and thought is free from fear. If you go back to it now, keeping just enough bitterness to put a pleasant edge on your conversation, and just enough worldly wisdom to save other people's toes, you will find yourself in the best of all company -- the company of clean, humorous, intellect; and if you have a spark of imagination and try very hard to remember what it was like to be young, there is no reason why your brains should ever get woolly, or anyone should wish you out of the way. Farewell!
 
-
+\backmatter
+\printindex
 
 
 
