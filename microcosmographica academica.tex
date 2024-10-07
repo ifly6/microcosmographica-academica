@@ -1,18 +1,15 @@
 \documentclass[12pt, oneside, b5paper]{memoir}
+\usepackage[T1]{fontenc}
+\usepackage{inputenc}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
-
-\usepackage[T1]{fontenc}
-\usepackage{inputenc}
 \usepackage{fontspec}
 \usepackage{imakeidx}
 \makeindex
 
 \usepackage{titling}
-\usepackage[hang, norule, stable, multiple, bottom]{footmisc}
 \usepackage[default]{sourcesanspro}
-%\usepackage{XCharter}
 \usepackage[british]{babel}
 \usepackage[autostyle]{csquotes}
 \MakeOuterQuote{"}
@@ -24,6 +21,7 @@
 \usepackage{xspace}
 \usepackage[xspace]{ellipsis}
 
+% fix the margins
 \usepackage{geometry}
 \geometry{
     inner  = 2.5cm,      % Inner margin
@@ -32,15 +30,8 @@
     bottom = 2.5cm,      % Bottom margin
     %showframe,         % show how the type block is set on the page
 }
-\usepackage{xcolor}
-\usepackage[
-	colorlinks,
-	linkcolor = teal,
-	urlcolor  = teal,
-	citecolor = teal,
-	anchorcolor = teal
-]{hyperref}
 
+% create a subtitle
 \newcommand{\subtitle}[1]{%
 	\posttitle{%
 		\par\end{center}
@@ -51,6 +42,8 @@
 \setlength\epigraphrule{0in}
 \nouppercaseheads
 
+% make the footnotes look better
+\usepackage[hang, norule, stable, multiple, bottom]{footmisc}
 \usepackage{etoolbox}
 \makeatletter%%
 \patchcmd{\@makefntext}{%
@@ -71,9 +64,21 @@
 \setlength{\footnotemargin}{1.25em} % Between marker and text
 \setlength{\skip\footins}{1\baselineskip} % Between main text and note rule
 \setlength{\footnotesep}{\skip\footins} % Between footnotes [= previous]
-
 \renewcommand{\hangfootparskip}{0pt}
 \renewcommand{\hangfootparindent}{1em}
+
+% import hyperref last
+\usepackage{xcolor}
+\usepackage[
+	colorlinks,
+	linkcolor = teal,
+	urlcolor  = teal,
+	citecolor = teal,
+	anchorcolor = teal
+]{hyperref}
+
+% ------------------------------------------------------------------------------
+% custom commands, titles, etc
 
 \newcommand{\ma}{\textit{Microcosmographica Academica}}
 \newcommand{\mashort}{\textit{Microcosmographica}}
