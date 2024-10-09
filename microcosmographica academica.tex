@@ -4,7 +4,6 @@
 
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{fontspec}
 \usepackage{imakeidx}
 \makeindex
 
@@ -21,14 +20,16 @@
 \usepackage{xspace}
 \usepackage[xspace]{ellipsis}
 
+% ------------------------------------------------------------------------------
+% appearance stuff
+
 % fix the margins and spacing
 \usepackage{geometry}
 \geometry{
-    inner  = 2.5cm,      % Inner margin
-    outer  = 2.5cm,      % Outer margin
-    top    = 2.5cm,      % Top margin
-    bottom = 2.5cm,      % Bottom margin
-    %showframe,         % show how the type block is set on the page
+    margin=2.5cm,
+    headsep=\dimexpr1.25cm-0.5\headheight\relax,
+    footskip=\dimexpr1.25cm+0.25\headheight\relax,
+    %showframe % optional
 }
 \OnehalfSpacing  % no need to usepackage setspace
 
@@ -70,13 +71,7 @@
 
 % import hyperref last
 \usepackage{xcolor}
-\usepackage[
-	colorlinks,
-	linkcolor = teal,
-	urlcolor  = teal,
-	citecolor = teal,
-	anchorcolor = teal
-]{hyperref}
+\usepackage[colorlinks, allcolors=teal]{hyperref}
 
 % ------------------------------------------------------------------------------
 % custom commands, titles, etc
@@ -93,6 +88,9 @@ by Metcalfe \& Company Ltd, Cambridge
 \vskip 2em
 \textcopyright\ 2024 (GPL-2) by ifly6
 }
+
+% ------------------------------------------------------------------------------
+% document begin
 
 \begin{document}
 
